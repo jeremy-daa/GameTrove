@@ -2,30 +2,10 @@ import { FeatureBundle } from "framer-motion";
 import apiClient from "../services/api-client";
 import { useEffect, useState } from "react";
 import { Text } from "@chakra-ui/react";
-interface Game {
-  id: number;
-  name: string;
-}
-interface GameFetchResponse {
-  count: number;
-  next: string;
-  previous: string;
-  results: Game[];
-}
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    apiClient
-      .get<GameFetchResponse>("/game")
-      .then((res) => {
-        setGames(res.data.results);
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
-  }, []);
+  const { error, games } = useGames();
 
   return (
     <div>
