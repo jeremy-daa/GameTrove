@@ -1,8 +1,9 @@
 import { FeatureBundle } from "framer-motion";
 import apiClient from "../services/api-client";
 import { useEffect, useState } from "react";
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
+import GameCard from "./GameCard";
 
 const GameGrid = () => {
   const { error, games } = useGames();
@@ -10,11 +11,15 @@ const GameGrid = () => {
   return (
     <div>
       {error && <Text>{error}</Text>}
-      <ul>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        padding="10px"
+        spacing={10}
+      >
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <GameCard key={game.id} game={game} />
         ))}
-      </ul>
+      </SimpleGrid>
     </div>
   );
 };
