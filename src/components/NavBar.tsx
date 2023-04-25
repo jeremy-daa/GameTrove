@@ -4,8 +4,13 @@ import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
   return (
-    <HStack justifyContent="space-between" padding="10px">
-      <Image src={logo} width="60px" />
+    <HStack justifyContent="space-between" margin="15px">
+      <HStack>
+        <Image src={logo} width="60px" />
+        <Text fontFamily={"Trebuchet MS"} fontSize={"25px"} paddingX={3}>
+          GameTrove
+        </Text>
+      </HStack>
       <ColorModeSwitch />
     </HStack>
   );
