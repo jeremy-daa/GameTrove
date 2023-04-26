@@ -9,7 +9,7 @@ import {
 
 const GameCardSkeleton = () => {
   return (
-    <Card>
+    <Card borderRadius={10} overflow={"hidden"}>
       <Skeleton height={"250px"} />
       <CardBody>
         <SkeletonText />
