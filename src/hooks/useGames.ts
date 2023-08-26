@@ -15,14 +15,24 @@ export interface Game {
   genres: Genre[];
 }
 
-const useGames = (selectedGenre: Genre | null) => {
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) => {
   const {
     data: games,
     error,
     isLoading,
-  } = useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+  } = useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: selectedGenre?.id,
+        parent_platforms: selectedPlatform?.id,
+      },
+    },
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
   return { games, error, isLoading };
 };
 export default useGames;
